@@ -1,5 +1,4 @@
 provider "oci" {
-  version = "4.75.0"
   auth = "ResourcePrincipal"
   region = "us-ashburn-1"
 }
