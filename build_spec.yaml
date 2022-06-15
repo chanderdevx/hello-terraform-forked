@@ -30,7 +30,7 @@ steps:
     name: "Terraform apply"
     timeoutInSeconds: 10000
     command: |
-      terraform apply
+      terraform apply -auto-approve
     onFailure:
       - type: Command
         command: |
