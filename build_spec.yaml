@@ -5,35 +5,9 @@ runAs: root
 shell: bash
 steps:
   - type: Command
-    name: "Terraform init"
+    name: "Execute terraform"
     timeoutInSeconds: 10000
     command: |
       terraform init
-    onFailure:
-      - type: Command
-        command: |
-          echo "Terraform init failed"
-        timeoutInSeconds: 1000
-        runAs: root
-  - type: Command
-    name: "Terraform plan"
-    timeoutInSeconds: 10000
-    command: |
-      terraform plan
-    onFailure:
-      - type: Command
-        command: |
-          echo "Terraform plan failed"
-        timeoutInSeconds: 1000
-        runAs: root
-  - type: Command
-    name: "Terraform apply"
-    timeoutInSeconds: 10000
-    command: |
-      terraform apply -auto-approve
-    onFailure:
-      - type: Command
-        command: |
-          echo "Terraform apply failed"
-        timeoutInSeconds: 1000
-        runAs: root
+      terraform plan -out tfplan
+      terraform apply tfplan -auto-approve
